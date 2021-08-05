@@ -102,125 +102,6 @@ float sum_f {};
 
 
 
-void test_function1 (void* data, void* axis, const float& angle)
-{
-	float* _data = (float*) data;
-	float* _axis = (float*) axis;
-
-	const float angle_half = angle * 0.5f;
-	const float _sin = sin(angle_half);
-
-	_data[0] = _axis[0] * _sin;
-	_data[1] = _axis[1] * _sin;
-	_data[2] = _axis[2] * _sin;
-	_data[3] = cos(angle_half);
-}
-
-void test_function2 (void* dst_quaternion_addr, void* dst_vector_addr, const float& angle)
-{
-	float* dst_quaternion_addr_float = (float*) dst_quaternion_addr;
-	float* dst_vector_addr_float = (float*) dst_vector_addr;
-
-	const float angle_half = angle * 0.5f;
-
-	alignas(16) const __m128 data_128 = _mm_mul_ps(_mm_load_ps(dst_vector_addr_float), _mm_set1_ps(sin(angle_half)));
-
-	_mm_store_ps(dst_quaternion_addr_float, data_128);
-
-	dst_quaternion_addr_float[3] = cos(angle_half);
-}
-
-void test_function3 (void* dst_quaternion_addr, void* dst_vector_addr, const float& angle)
-{
-	float* dst_quaternion_addr_float = (float*) dst_quaternion_addr;
-	float* dst_vector_addr_float = (float*) dst_vector_addr;
-
-	const float angle_half = angle * 0.5f;
-
-	alignas(16) __m128 data_128 = _mm_mul_ps(_mm_load_ps(dst_vector_addr_float), _mm_set1_ps(sin(angle_half)));
-
-	data_128[3] = cos(angle_half);
-
-	_mm_store_ps(dst_quaternion_addr_float, data_128);
-}
-
-void test_function4 (void* dst_quaternion_addr, void* dst_vector_addr, const float& angle)
-{
-	float* dst_quaternion_addr_float = static_cast<float*>(dst_quaternion_addr);
-	float* dst_vector_addr_float = static_cast<float*>(dst_vector_addr);
-
-	const float angle_half = angle * 0.5f;
-
-	alignas(16) __m128 data_128 = _mm_mul_ps(_mm_load_ps(dst_vector_addr_float), _mm_set1_ps(sin(angle_half)));
-
-	data_128[3] = cos(angle_half);
-
-	_mm_store_ps(dst_quaternion_addr_float, data_128);
-}
-
-
-
-// void makeRot1 (void* data, void* axis, const float& angle)
-// {
-// 	float* _data = (float*) data;
-// 	float* _axis = (float*) axis;
-
-// 	const float angle_half = angle * 0.5f;
-// 	const float _sin = sin(angle_half);
-
-// 	_data[0] = _axis[0] * _sin;
-// 	_data[1] = _axis[1] * _sin;
-// 	_data[2] = _axis[2] * _sin;
-// 	_data[3] = cos(angle_half);
-// }
-
-
-
-// #define MAKE_ROT(quaternion_addr_float, vector_addr_float)\
-// \
-// 	const float angle_half = angle * 0.5f;\
-// 	alignas(16) const __m128 data_128 = _mm_mul_ps(_mm_load_ps(vector_addr_float), _mm_set1_ps(sin(angle_half)));\
-// \
-// 	_mm_store_ps(quaternion_addr_float, data_128);\
-// \
-// 	quaternion_addr_float[3] = cos(angle_half);
-
-// void makeRot2 (void* dst_quaternion_addr, void* dst_vector_addr, const float& angle)
-// {
-// 	float* dst_quaternion_addr_float = (float*) dst_quaternion_addr;
-// 	float* dst_vector_addr_float = (float*) dst_vector_addr;
-
-// 	MAKE_ROT(dst_quaternion_addr_float, dst_vector_addr_float)
-// }
-
-
-
-// #define MAKE_ROT2(quaternion_addr_float, vector_addr_float)\
-// \
-// 	const float angle_half = angle * 0.5f;\
-// 	alignas(16) __m128 data_128 = _mm_mul_ps(_mm_load_ps(vector_addr_float), _mm_set1_ps(sin(angle_half)));\
-// 	data_128[3] = cos(angle_half);\
-// \
-// 	_mm_store_ps(quaternion_addr_float, data_128);
-
-// void makeRot3 (void* dst_quaternion_addr, void* dst_vector_addr, const float& angle)
-// {
-// 	float* dst_quaternion_addr_float = static_cast<float*>(dst_quaternion_addr);
-// 	float* dst_vector_addr_float = static_cast<float*>(dst_vector_addr);
-
-// 	MAKE_ROT2(dst_quaternion_addr_float, dst_vector_addr_float)
-// }
-
-// void makeRot4 (void* dst_quaternion_addr, void* dst_vector_addr, const float& angle)
-// {
-// 	float* dst_quaternion_addr_float = (float*) dst_quaternion_addr;
-// 	float* dst_vector_addr_float = (float*) dst_vector_addr;
-
-// 	MAKE_ROT2(dst_quaternion_addr_float, dst_vector_addr_float)
-// }
-
-
-
 int main (void)
 {
 	if (!glfwInit())
@@ -290,12 +171,12 @@ int main (void)
 	float axis [4] { 1.0f, 0.0f, 0.0f, 0.0f };
 
 	q1.preRot32(axis, 0.5f);
-	q2.preRot32(axis, 0.5f);
+	q2.preRot128(axis, 0.5f);
 
 	q1.print();
 	q2.print();
 
-	// return 0;
+	return 0;
 
 
 
