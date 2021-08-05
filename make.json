@@ -1,0 +1,73 @@
+{
+	"build_type": "bin",
+
+	"target_name": "xgk-perf",
+
+	"variables":
+	{
+		"gcc-x64":
+		{
+			"LIBS": "/home/denis/libs",
+			"REPS": "/home/denis/reps"
+		}
+	},
+
+	"include_directories":
+	[
+		"$(SRC)",
+		"$(REPS)",
+		"$(LIBS)/glad/include",
+		"$(LIBS)/glfw-3.3.2/include"
+	],
+
+	"system_libraries":
+	[
+		"dl",
+		"pthread",
+		"Xrandr",
+		"Xxf86vm",
+		"Xi",
+		"Xinerama",
+		"X11",
+		"Xcursor"
+	],
+
+	"static_libraries":
+	[
+		"$(LIBS)/glfw-3.3.2/src/libglfw3",
+		"$(REPS)/denis-belov/xgk-math/build/gcc-x64/output/a/xgk-math"
+	],
+
+	"_static_libraries":
+	[
+		"$(LIBS)/glfw-3.3.2/src/libglfw3"
+	],
+
+	"static_libraries2":
+	[
+		"$(REPS)/denis-belov/xgk-math"
+	],
+
+	"source_files":
+	{
+		"internal":
+		{
+			"cpp": "$(SRC)/perf.cpp",
+			"asm": "$(SRC)/clock64"
+		},
+
+		"external":
+		{
+			"cpp":
+			[
+				{
+					"source": "$(LIBS)/glad/src/glad.c",
+					"options":
+					{
+						"flags": "-w"
+					}
+				}
+			]
+		}
+	}
+}
