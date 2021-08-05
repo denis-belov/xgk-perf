@@ -1,6 +1,6 @@
 #define DEBUG
 
-#define ITERATION_COUNT 99999999
+#define ITERATION_COUNT 9999999
 
 #define PERF_START\
 \
@@ -283,28 +283,31 @@ int main (void)
 
 
 
-	XGK::DATA::Quat q1;
-	XGK::DATA::Quat q2;
-	XGK::DATA::Quat q3;
-	XGK::DATA::Quat q4;
-	float axis [4] { 0.123f, 0.24f, 0.56f, 0.0f };
+	XGK::DATA::Quat q1 { 0, 0, 0, 1.0f };
+	XGK::DATA::Quat q2 { 0, 0, 0, 1.0f };
+	XGK::DATA::Quat q3 { 1.123f, 3.8f, 0.98f, 8.123f };
+	XGK::DATA::Quat q4 { 2.4f, 1.536f, 10.78f, 545.878f };
+	float axis [4] { 1.0f, 0.0f, 0.0f, 0.0f };
 
+	q1.preRot32(axis, 0.5f);
+	q2.preRot32(axis, 0.5f);
 
+	q1.print();
+	q2.print();
 
-	q3.set(1.123f, 3.8f, 0.98f, 8.123f);
-	q4.set(2.4f, 1.536f, 10.78f, 545.878f);
+	// return 0;
 
 
 
 	// for (; 1; )
-	for (size_t ii {}; ii < 9; ++ii)
+	for (size_t ii {}; ii < 999; ++ii)
 	{
 		PERF_START
-			q1.makeRot32(axis, 0.5f);
+			q1.preRot32(axis, 0.5f);
 		PERF_END
 
 		PERF_START
-			q2.makeRot128(axis, 0.5f);
+			q2.preRot128(axis, 0.5f);
 		PERF_END
 
 		// PERF_START
