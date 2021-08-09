@@ -37,7 +37,7 @@
 #include <immintrin.h>
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
-#include "denis-belov/xgk-math/src/data/quat/quat.h"
+#include "denis-belov/xgk-math/src/quat/quat.h"
 // #include <cstddef>
 
 
@@ -164,10 +164,10 @@ int main (void)
 
 
 
-	XGK::DATA::Quat q1 { 0, 0, 0, 1.0f };
-	XGK::DATA::Quat q2 { 0, 0, 0, 1.0f };
-	XGK::DATA::Quat q3 { 1.123f, 3.8f, 0.98f, 8.123f };
-	XGK::DATA::Quat q4 { 2.4f, 1.536f, 10.78f, 545.878f };
+	XGK::MATH::Quat q1 { 0, 0, 0, 1.0f };
+	XGK::MATH::Quat q2 { 0, 0, 0, 1.0f };
+	XGK::MATH::Quat q3 { 1.123f, 3.8f, 0.98f, 8.123f };
+	XGK::MATH::Quat q4 { 2.4f, 1.536f, 10.78f, 545.878f };
 	float axis [4] { 1.0f, 0.0f, 0.0f, 0.0f };
 
 	q1.preRot32(axis, 0.5f);
