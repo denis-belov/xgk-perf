@@ -176,7 +176,89 @@ int main (void)
 	q1.print();
 	q2.print();
 
-	return 0;
+	// return 0;
+
+
+
+	// float BezierCubicCurve (const float time, const float x1, const float y1, const float x2, const float y2)
+	// {
+	// 	// B(t) = (1-t)^3*p0 + 3*t*(1-t)^2*p1 + 3*t^2*(1-t)*p2 + t^3*p3
+	// 	// x(t) = (1-t)^3*x0 + 3*t*(1-t)^2*x1 + 3*t^2*(1-t)*x2 + t^3*x3
+	// 	// y(t) = (1-t)^3*y0 + 3*t*(1-t)^2*y1 + 3*t^2*(1-t)*y2 + t^3*y3
+	// 	// p0 = vec2(0,0), p3 = vec2(1,1)
+	// 	// x(t) = 3*t*(1-t)^2*x1 + 3*t^2*(1-t)*x2 + t^3
+	// 	const float a = 3 * x1 - 3 * x2 + 1;
+	// 	const float b = 3 * x2 - 6 * x1;
+	// 	const float c = 3 * x1;
+	// 	const float d = - time;
+	// 	// x(t) = a*t^3 + b*t^2 + c*t
+	// 	// x(t) = time => a*t^3 + b*t^2 + c*t - d = 0
+	// 	const float A = b / a;
+	// 	const float B = c / a;
+	// 	const float C = d / a;
+	// 	const float Q = ( 3 * B - A*A ) / 9;
+	// 	const float R = ( 9 * A * B - 27 * C - 2 * A*A*A ) / 54;
+	// 	const float D = Q*Q*Q + R*R; // discriminant
+	// 	float t;
+
+	// 	if ( D >= 0 )
+	// 	{
+	// 		// float asd = 0;
+	// 		// if (R + sqrt( D ) > 0) {
+
+	// 		// 	asd = 1;
+	// 		// }
+	// 		// else if (R + sqrt( D ) < 0) {
+
+	// 		// 	asd = -1;
+	// 		// }
+
+	// 		// float qwe = 0;
+	// 		// if (R - sqrt( D ) > 0) {
+
+	// 		// 	qwe = 1;
+	// 		// }
+	// 		// else if (R - sqrt( D ) < 0) {
+
+	// 		// 	qwe = -1;
+	// 		// }
+
+	// 		// const float S = asd * pow( abs( R + sqrt( D ) ), 1 / 3 );
+	// 		// const float T = qwe * pow( abs( R - sqrt( D ) ), 1 / 3 );
+	// 		const float sqrtD = sqrt( D );
+	// 		const float S = cbrt(R + sqrtD);
+	// 		const float T = cbrt(R - sqrtD);
+	// 		t = - A / 3 + ( S + T );
+	// 	}
+	// 	else
+	// 	{
+	// 		const float th = acos( R / sqrt( - pow( Q, 3 ) ) );
+	// 		const float t1 = 2 * sqrt( - Q ) * cos( th / 3 ) - A / 3;
+	// 		const float t2 = 2 * sqrt( - Q ) * cos( th / 3 + 2 * M_PI / 3 ) - A / 3;
+	// 		const float t3 = 2 * sqrt( - Q ) * cos( th / 3 - 2 * M_PI / 3 ) - A / 3;
+	// 		if ( t1 >= 0 && t1 <= 1 ) t = t1;
+	// 		else if ( t2 >= 0 && t2 <= 1 ) t = t2;
+	// 		else if ( t3 >= 0 && t3 <= 1 ) t = t3;
+	// 	}
+	// 	float y;
+	// 	if ( t == 0 ) y = 0;
+	// 	else if ( t == 1 ) y = 1;
+	// 	else y = 3 * t * pow( 1 - t, 2 ) * y1 + 3 * t*t * ( 1 - t ) * y2 + t*t*t;
+	// 	return y;
+	// };
+
+	// float a = 0.0f;
+	// float b = 0.0f;
+
+	// for (size_t i = 0; i < 9999999; ++i)
+	// {
+	// 	b += BezierCubicCurve(((float) i) / 9999999.0f, .2,.97,.82,-0.97);
+	// }
+
+	// for (size_t i = 0; i < 9999999; ++i)
+	// {
+	// 	a += curve_values[uint64_t(((float) i) / 9999999.0f * 1000000.0f)];
+	// }
 
 
 

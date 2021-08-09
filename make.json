@@ -52,7 +52,7 @@
 	{
 		"internal":
 		{
-			"cpp": "$(SRC)/perf.cpp",
+			"cpp": "$(SRC)/xgk-perf.cpp",
 			"asm": "$(SRC)/clock64"
 		},
 
