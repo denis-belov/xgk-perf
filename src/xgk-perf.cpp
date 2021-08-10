@@ -171,11 +171,20 @@ int main (void)
 	XGK::MATH::Quat q4 { 2.4f, 1.536f, 10.78f, 545.878f };
 	float axis [4] { 1.0f, 0.0f, 0.0f, 0.0f };
 
-	XGK::MATH::Mat4 m1;
+	XGK::MATH::Mat4 m1
+	{
+		0.0f, 4.0f, 8.0f , 12.0f,
+		1.0f, 5.0f, 9.0f , 13.0f,
+		2.0f, 6.0f, 10.0f, 14.0f,
+		3.0f, 7.0f, 11.0f, 15.0f,
+	};
+
+	m1.print();
+
 	XGK::MATH::Mat4 m2;
 
-	m1.makeRotationFromQuat32(&q3);
-	m2.makeRotationFromQuat128(&q3);
+	m1.invns32();
+	m2.invns128();
 
 	m1.print();
 	m2.print();
@@ -276,12 +285,12 @@ int main (void)
 	for (size_t ii {}; ii < 999; ++ii)
 	{
 		PERF_START
-			m1.makeRotationFromQuat32(&q3);
+			m1.invns32();
 			// q1.preRot32(axis, 0.5f);
 		PERF_END
 
 		PERF_START
-			m2.makeRotationFromQuat128(&q4);
+			m2.invns128();
 			// q2.preRot128(axis, 0.5f);
 		PERF_END
 
