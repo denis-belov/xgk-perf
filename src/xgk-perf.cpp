@@ -38,6 +38,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "denis-belov/xgk-math/src/quat/quat.h"
+#include "denis-belov/xgk-math/src/mat4/mat4.h"
 // #include <cstddef>
 
 
@@ -164,17 +165,26 @@ int main (void)
 
 
 
-	XGK::MATH::Quat q1 { 0, 0, 0, 1.0f };
-	XGK::MATH::Quat q2 { 0, 0, 0, 1.0f };
+	XGK::MATH::Quat q1 { 0.0f, 0.0f, 0.0f, 1.0f };
+	XGK::MATH::Quat q2 { 0.0f, 0.0f, 0.0f, 1.0f };
 	XGK::MATH::Quat q3 { 1.123f, 3.8f, 0.98f, 8.123f };
 	XGK::MATH::Quat q4 { 2.4f, 1.536f, 10.78f, 545.878f };
 	float axis [4] { 1.0f, 0.0f, 0.0f, 0.0f };
 
-	q1.preRot32(axis, 0.5f);
-	q2.preRot128(axis, 0.5f);
+	XGK::MATH::Mat4 m1;
+	XGK::MATH::Mat4 m2;
 
-	q1.print();
-	q2.print();
+	m1.makeRotationFromQuat32(&q3);
+	m2.makeRotationFromQuat128(&q3);
+
+	m1.print();
+	m2.print();
+
+	// q1.preRot32(axis, 0.5f);
+	// q2.preRot128(axis, 0.5f);
+
+	// q1.print();
+	// q2.print();
 
 	// return 0;
 
@@ -266,11 +276,13 @@ int main (void)
 	for (size_t ii {}; ii < 999; ++ii)
 	{
 		PERF_START
-			q1.preRot32(axis, 0.5f);
+			m1.makeRotationFromQuat32(&q3);
+			// q1.preRot32(axis, 0.5f);
 		PERF_END
 
 		PERF_START
-			q2.preRot128(axis, 0.5f);
+			m2.makeRotationFromQuat128(&q4);
+			// q2.preRot128(axis, 0.5f);
 		PERF_END
 
 		// PERF_START
@@ -328,6 +340,9 @@ int main (void)
 
 	q1.print();
 	q2.print();
+
+	m1.print();
+	m2.print();
 
 
 
