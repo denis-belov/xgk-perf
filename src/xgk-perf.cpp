@@ -39,6 +39,7 @@
 #include "GLFW/glfw3.h"
 #include "denis-belov/xgk-math/src/quat/quat.h"
 #include "denis-belov/xgk-math/src/mat4/mat4.h"
+#include "denis-belov/xgk-math/src/object/object.h"
 // #include <cstddef>
 
 
@@ -179,6 +180,9 @@ int main (void)
 		3.0f, 7.0f, 11.0f, 15.0f,
 	};
 
+	XGK::MATH::Object o1;
+	XGK::MATH::Object o2;
+
 	m1.print();
 
 	XGK::MATH::Mat4 m2;
@@ -285,12 +289,14 @@ int main (void)
 	for (size_t ii {}; ii < 999; ++ii)
 	{
 		PERF_START
-			m1.invns32();
+			o1.update2();
+			// m1.postTrans32(&q3);
 			// q1.preRot32(axis, 0.5f);
 		PERF_END
 
 		PERF_START
-			m2.invns128();
+			o2.update2_128();
+			// m2.postTrans128(&q4);
 			// q2.preRot128(axis, 0.5f);
 		PERF_END
 
@@ -349,6 +355,9 @@ int main (void)
 
 	q1.print();
 	q2.print();
+
+	o1.mat.print();
+	o2.mat.print();
 
 	m1.print();
 	m2.print();
