@@ -18,7 +18,7 @@
 		"$(REPS)",
 		"$(REPS)/denis-belov/xgk-math/src",
 		"$(LIBS)/glad/include",
-		"$(LIBS)/glfw-3.3.2/include"
+		"$(LIBS)/glfw-3.3.4/include"
 	],
 
 	"system_libraries":
@@ -35,13 +35,8 @@
 
 	"static_libraries":
 	[
-		"$(LIBS)/glfw-3.3.2/src/libglfw3",
+		"$(LIBS)/glfw-3.3.4/build/src/libglfw3",
 		"$(REPS)/denis-belov/xgk-math/build/gcc-x64/output/a/xgk-math"
-	],
-
-	"_static_libraries":
-	[
-		"$(LIBS)/glfw-3.3.2/src/libglfw3"
 	],
 
 	"static_libraries2":
