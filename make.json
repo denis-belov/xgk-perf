@@ -36,12 +36,12 @@
 	"static_libraries":
 	[
 		"$(LIBS)/glfw-3.3.4/build/src/libglfw3",
-		"$(REPS)/denis-belov/xgk-math/build/gcc-x64/output/a/xgk-math"
-	],
 
-	"static_libraries2":
-	[
-		"$(REPS)/denis-belov/xgk-math"
+		{
+			"library": "$(REPS)/denis-belov/xgk-math/build/gcc-x64/output/a/xgk-math",
+			"watch": "$(REPS)/denis-belov/xgk-math/src",
+			"do": "/home/denis/.nvm/versions/node/v14.4.0/bin/node $(REPS)/denis-belov/c-build/src/genmake gcc-x64 $(REPS)/denis-belov/xgk-math/make.json && make -f $(REPS)/denis-belov/xgk-math/makefiles/gcc-x64/Makefile"
+		}
 	],
 
 	"source_files":
